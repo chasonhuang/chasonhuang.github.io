@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
     <title>驯鹿者</title>
-    <updated>2020-07-21T09:14:47.712Z</updated>
+    <updated>2020-07-21T09:16:46.917Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
@@ -16,7 +16,13 @@
         <link href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">
         </link>
         <updated>2020-07-21T09:12:12.000Z</updated>
-        <content type="html"><![CDATA[<p>1、单例模式 Singleton<br>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p>1、单例模式 Singleton<br>
 简介<br>
 单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象</p>
 <p>作用和注意事项<br>
