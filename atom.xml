@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-07-21T08:57:24.198Z</updated>
+    <title>驯鹿者</title>
+    <updated>2020-07-21T09:03:16.998Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>微笑不失礼</subtitle>
     <logo>https://chasonhuang.github.io/images/avatar.png</logo>
     <icon>https://chasonhuang.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, 驯鹿者</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea123]]></title>
         <id>https://chasonhuang.github.io/post/hello-gridea/</id>
