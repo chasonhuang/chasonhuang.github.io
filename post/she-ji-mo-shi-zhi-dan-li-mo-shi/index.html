@@ -1,0 +1,220 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>设计模式之单例模式 | 驯鹿者</title>
+<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595322882549">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://chasonhuang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="设计模式之单例模式 | 驯鹿者 - Atom Feed" href="https://chasonhuang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1、单例模式 Singleton
+简介
+单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://chasonhuang.github.io">
+  <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595322882549" alt="">
+  </a>
+  <h1 class="site-title">
+    驯鹿者
+  </h1>
+  <p class="site-description">
+    微笑不失礼
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              设计模式之单例模式
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-21
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>1、单例模式 Singleton<br>
+简介<br>
+单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象</p>
+<p>作用和注意事项<br>
+作用</p>
+<p>模块间通信<br>
+在系统中某个类的对象只能存在一个<br>
+保护自己的属性和方法，创建一个命名空间，防止不同的人命名变量的冲突<br>
+注意事项</p>
+<p>注意 this 的使用<br>
+闭包容易造成内存泄漏，不需要的要清理<br>
+注意 new 的成本<br>
+当超过一个县线程想要获取相同资源的时候，竞争就会出现，单例模式很容易受到竞争的影响，因此如果实例一开始没有被初始化，两个现象可能就会创建两个对象而不是返回实例，因此在开发者在多线程中实现单例时，必须要保证同步<br>
+类比： 如果有十个人在办公室，并且他们都需要用一台打印机，十台电脑共享了打印机（实例）通过共享了一个打印机，他们分享了相同的资源</p>
+<p>个人理解<br>
+开创一个命名空间，对象实例创建在命名空间中，用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下次获取该实例的时候，直接返回之前创建的对象</p>
+<p>使用场景：<br>
+单例模式是一种常用的模式，有一些对象我们往往只需要一个，比如全局缓存、浏览器的window对象。在js开发中，单例模式的用途同样非常广泛。试想一下，当我们<br>
+单击登录按钮的时候，页面中会出现一个登录框，而这个浮窗是唯一的，无论单击多少次登录按钮，这个浮窗只会被创建一次。因此这个登录浮窗就适合用单例模式。<br>
+总结一下它的使用场景：<br>
+　　1、可以用它来划分命名空间<br>
+2、借助单例模式，可以把代码组织的更为一致，方便阅读与维护</p>
+<p>// class Singleton {<br>
+// private static instance: Singleton</p>
+<p>// private constructor () {}</p>
+<p>// static getInstance (): Singleton {<br>
+// if (!Singleton.instance) {<br>
+// Singleton.instance = new Singleton()<br>
+// }<br>
+// return this.instance<br>
+// }<br>
+// }</p>
+<p>// const singleton1 = Singleton.getInstance()<br>
+// const singleton2 = Singleton.getInstance()<br>
+// console.log(singleton1 === singleton2) // true</p>
+<p>class Singleton {<br>
+private constructor(name: string, age: number) {<br>
+this.name = name;<br>
+this.age = age;<br>
+}</p>
+<p>private static instance: Singleton;</p>
+<p>public name: string;<br>
+public age: number;</p>
+<p>static getInstance(name: string, age: number): Singleton {<br>
+if (!this.instance) {<br>
+this.instance = new Singleton(name, age);<br>
+}<br>
+return this.instance;<br>
+}<br>
+}</p>
+<p>const singleton1 = Singleton.getInstance(&quot;Mary&quot;, 20);<br>
+const singleton2 = Singleton.getInstance(&quot;Jack&quot;, 20);<br>
+console.log(singleton1, singleton2);<br>
+// Singleton { name: 'Mary', age: 20 } Singleton { name: 'Mary', age: 20 }</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://chasonhuang.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea123
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://chasonhuang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
