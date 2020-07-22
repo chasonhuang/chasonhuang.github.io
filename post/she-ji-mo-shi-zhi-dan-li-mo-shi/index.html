@@ -1,144 +1,94 @@
-<!doctype html>
-<html amp lang="">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="1、单例模式 Singleton
-简介
-单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全..." />
-<link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
-<link rel="preconnect dns-prefetch" href="https://cdn.jsdelivr.net/" crossorigin>
-<script async src="https://cdn.ampproject.org/v0.js"></script>
 <title>设计模式之单例模式 | 驯鹿者</title>
+<meta name="description" content="微笑不失礼">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595414182358">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://chasonhuang.github.io/styles/main.css">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
   
-
-    
-
-
-<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
-<noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-<link rel="canonical" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/" />
-<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595413679618">
-
-<meta name="author" content="">
-
-<meta itemprop="name" content="设计模式之单例模式 | 驯鹿者">
-<meta itemprop="description" content="1、单例模式 Singleton
-简介
-单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全...">
-<meta itemprop="image" content="">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="设计模式之单例模式 | 驯鹿者">
-<meta name="twitter:description" content="1、单例模式 Singleton
-简介
-单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全...">
-<meta name="twitter:image" content="" />
-<meta name="twitter:image:alt" content="设计模式之单例模式 | 驯鹿者" />
-
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">
-<meta property="og:title" content="设计模式之单例模式 | 驯鹿者">
-<meta property="og:description" content="1、单例模式 Singleton
-简介
-单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全...">
-<meta property="og:image" content="">
-<meta property="og:image:alt" content="设计模式之单例模式 | 驯鹿者" />
-<meta property="og:site_name" content="驯鹿者">
-<meta property="og:locale" content="zh_CN">
-<meta property="tag" content="设计模式之单例模式 | 驯鹿者" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="alternate" type="application/atom+xml" title="设计模式之单例模式 | 驯鹿者 - Atom Feed" href="https://chasonhuang.github.io/atom.xml">
-
-
-
-  
-
-
-
-  
-
-
-</head>
-
-<body>
-  <input type="checkbox" id="header-menu-button">
-  <header id="commonTop">
-  <div class="top-container">
-    <div class="title-menus-area">
-      <a class="blog-title" href="https://chasonhuang.github.io">驯鹿者</a>
-      <label for="header-menu-button" class="top-menus">
-        <nav class="menu-menu-1-container">
-          <ul id="menu-menu-1" class="menu">
-            
-            
-            <li>
-              <a href="/" aria-current="page">首页</a></li>
-            
-            
-            
-            <li>
-              <a href="/archives" aria-current="page">归档</a></li>
-            
-            
-            
-            <li>
-              <a href="/tags" aria-current="page">标签</a></li>
-            
-            
-            
-            <li>
-              <a href="/post/about" aria-current="page">关于</a></li>
-            
-            
-          </ul>
-        </nav>
-      </label>
-    </div>
-    
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://chasonhuang.github.io">驯鹿者</a></h3>
   </div>
-</header>
-  <main>
-    <div class="main-container">
-
-      <div class="article-info">
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-        <h2 class="article-title">
-          <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">设计模式之单例模式</a>
-        </h2>
-        <div class="flex-box">
-          <div class="flex-box post-meta-box">
-            <a class="post-meta" href="https://chasonhuang.github.io"><span
-                class="iconfont icon-mr-postmeta"></span></a>
-            <span class="post-meta"><span class="iconfont icon-mr-postmeta"></span>2020 年 07	月 21日</span>
+          <li>
             
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <p>1、单例模式 Singleton<br>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>设计模式之单例模式</h1>
+            <p class="article-meta">
+              2020-07-21
+              
+            </p>
+            
+            <div class="post-content">
+              <p>1、单例模式 Singleton<br>
 简介<br>
 单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象</p>
 <p>作用和注意事项<br>
@@ -193,85 +143,104 @@ const singleton2 = Singleton.getInstance(&quot;Jack&quot;, 20);<br>
 console.log(singleton1, singleton2);<br>
 // Singleton { name: 'Mary', age: 20 } Singleton { name: 'Mary', age: 20 }</p>
 
-      </div>
-
-      
-      <nav class="post-nav">
-        
-        
-        <div class="nav-next">
-          <a class="post-nav-link-active" title="Hello Gridea123" href="https://chasonhuang.github.io/post/hello-gridea/">下一篇文章</a>
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://chasonhuang.github.io/post/hello-gridea/">
+                <h3 class="post-title">
+                  Hello Gridea123
+                </h3>
+              </a>
+            </div>
+          
         </div>
-      </nav>
-      
-
-      
-      
-
-      <div class="post-tags">
-               
-      </div>
-
-
         
-
-    </div>
-
-    <div class="sidebar">
-  <aside id="profile-2" class="widget widget_profile">
-    <div class="profile-box">
-      <div class="profile-avatar">
-        <amp-img src="https://chasonhuang.github.io/images/avatar.png?v=1595413679618" alt="avatar"
-          layout="fill"></amp-img>
       </div>
-      <div class="profile-content">
-        <div class="amp-wp-681d4ff">
-          微笑不失礼
-        </div>
 
-      </div>
-    </div>
-  </aside>
-  
-    
-  
-     
-
-
-  <aside id="linkcat-2" class="widget widget_links">
-  <h4 class="widget-title">友链</h4>
-  <ul class="xoxo blogroll">
-    
-  </ul>
-</aside>
-
-
-</div>
-    <div class="scrolltop-wrap">
-  <span tabindex="0" role="button" class="go-top" on="tap:commonTop.scrollTo(duration=500, position=top)">
-    <span class="iconfont"></span>
-  </span>
-</div>
-  </main>
-  <footer>
-  <div class="footer-container">
-    <div class="footer-menus">
-    </div>
-    <div class="footer-copyright">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://chasonhuang.github.io/images/avatar.png?v=1595414182358" class="no-responsive avatar">
+    <div class="text-muted">微笑不失礼</div>
+    <div class="social-container">
       
+        
       
-
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
   </div>
-</footer>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">设计模式之单例模式</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://chasonhuang.github.io/post/about/">关于</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://chasonhuang.github.io/post/hello-gridea/">Hello Gridea123</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://chasonhuang.github.io/tag/sTfJnLMb-/" class="badge warning">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://chasonhuang.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
 
 
-  
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
 
 
-</body>
 
+
+  </body>
 </html>
