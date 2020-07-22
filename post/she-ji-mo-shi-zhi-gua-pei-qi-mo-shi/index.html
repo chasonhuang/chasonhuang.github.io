@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | 驯鹿者
+    设计模式之适配器模式 | 驯鹿者
 </title>
 <link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415631807">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,34 +99,71 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            关于
+                            设计模式之适配器模式
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
+                            <time class="post-time">2020-07-22</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<pre><code>技术分享
-</code></pre>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<pre><code>驯鹿者
-</code></pre>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<pre><code>唱跳rap篮球
-</code></pre>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<pre><code>1124531571@qq.com
-</code></pre>
+                                    <p>适配器模式适配器模式: 一般是指不兼容的方法调用之间的一个代码薄层。<br>
+分为类适配器和对象适配器，但是类适配器一般要多继承，所以不推荐使用。实际场景<br>
+我们在旧的系统中实现一个需要传入三个参数的方法，并且已经有很多地方在使用这个方法。现在有一个新的系统也想使用这个方法，但是它只能提供将三个参数合并为一个数组的参数。<br>
+这时我们需要一个代码薄层将数据进行转化，使两个系统完成对接。适配器模式的结构<br>
+*<br>
+原有的系统的接口<br>
+*<br>
+适配器类实现原系统接口</p>
+<p>interface Graph {<br>
+drawLine();</p>
+<p>drawPie();<br>
+}</p>
+<p>class Canvas2D implements Graph {<br>
+drawLine() {<br>
+console.log(&quot;draw 2d line&quot;);<br>
+}</p>
+<p>drawPie() {<br>
+console.log(&quot;draw 2d pie&quot;);<br>
+}<br>
+}</p>
+<p>class Canvas3D {<br>
+draw3DLine() {<br>
+console.log(&quot;draw 3d line&quot;);<br>
+}</p>
+<p>draw3DPie() {<br>
+console.log(&quot;draw 3d pie&quot;);<br>
+}<br>
+}</p>
+<p>class Canvas3DAdapter implements Graph {<br>
+private canvas3D: Canvas3D = new Canvas3D();</p>
+<p>drawLine() {<br>
+this.canvas3D.draw3DLine();<br>
+}</p>
+<p>drawPie() {<br>
+this.canvas3D.draw3DPie();<br>
+}<br>
+}</p>
+<p>let canvas2D: Graph = new Canvas2D();<br>
+canvas2D.drawLine();<br>
+canvas2D.drawPie();</p>
+<p>let canvas3D: Graph = new Canvas3DAdapter();<br>
+canvas3D.drawLine();<br>
+canvas3D.drawPie();</p>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">
+                                <h3 class="post-title">
+                                    设计模式之工厂模式
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -135,49 +172,32 @@
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415631807)">
+        </div>
+        <h1 class="id_card-title">
+            驯鹿者
+        </h1>
+        <h2 class="id_card-description">
+            微笑不失礼
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
     </div>
     
-                            
+                                    
 
                 </div>
 

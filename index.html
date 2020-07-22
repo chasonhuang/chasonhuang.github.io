@@ -7,7 +7,7 @@
 <title>
     驯鹿者
 </title>
-<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415560675">
+<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415631807">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://chasonhuang.github.io">
-                <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595415560675" alt="">
+                <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595415631807" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,72 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">
+                        设计模式之适配器模式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-07-22</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            适配器模式适配器模式: 一般是指不兼容的方法调用之间的一个代码薄层。
+分为类适配器和对象适配器，但是类适配器一般要多继承，所以不推荐使用。实际场景
+我们在旧的系统中实现一个需要传入三个参数的方法，并且已经有很多地方在使用这个方法。现在有一个新的系统也想使用这个方法，但是它只能提供将三个参数合并为一个数组的参数。
+这时我们需要一个代码薄层将数据进行转化，使两个系统完成对接。适配器模式的结构
+*
+原有的系统的接口
+*
+适配器类实现原系统接口
+interface Graph {
+drawLine();
+drawPie();
+}
+class Canvas2D implements Graph {
+drawLine() {
+console.log(&amp;quot;draw 2d line&amp;quot;);
+}
+drawPie() {
+console.log(&amp;quot;draw 2d pie&amp;quot;);
+}
+}
+class Canvas3D {
+draw3DLine() {
+console.log(&amp;quot;draw 3d line&amp;quot;);
+}
+draw3DPie() {
+console.log(&amp;quot;draw 3d pie&amp;quot;);
+}
+}
+class Canvas3DAdapter implements Graph {
+private canvas3D: Canvas3D = new Canvas3D();
+drawLine() {
+this.canvas3D.draw3DLine();
+}
+drawPie() {
+this.canvas3D.draw3DPie();
+}
+}
+let canvas2D: Graph = new Canvas2D();
+canvas2D.drawLine();
+canvas2D.drawPie();
+let canvas3D: Graph = new Canvas3DAdapter();
+canvas3D.drawLine();
+canvas3D.drawPie();
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">
@@ -320,7 +386,7 @@ console.log(singleton1, singleton2);
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415560675)">
+        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415631807)">
         </div>
         <h1 class="id_card-title">
             驯鹿者

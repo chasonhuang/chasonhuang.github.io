@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
     <title>驯鹿者</title>
-    <updated>2020-07-22T10:59:24.940Z</updated>
+    <updated>2020-07-22T11:00:35.857Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
@@ -10,6 +10,57 @@
     <logo>https://chasonhuang.github.io/images/avatar.png</logo>
     <icon>https://chasonhuang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 驯鹿者</rights>
+    <entry>
+        <title type="html"><![CDATA[设计模式之适配器模式]]></title>
+        <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/</id>
+        <link href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">
+        </link>
+        <updated>2020-07-22T11:00:14.000Z</updated>
+        <content type="html"><![CDATA[<p>适配器模式适配器模式: 一般是指不兼容的方法调用之间的一个代码薄层。<br>
+分为类适配器和对象适配器，但是类适配器一般要多继承，所以不推荐使用。实际场景<br>
+我们在旧的系统中实现一个需要传入三个参数的方法，并且已经有很多地方在使用这个方法。现在有一个新的系统也想使用这个方法，但是它只能提供将三个参数合并为一个数组的参数。<br>
+这时我们需要一个代码薄层将数据进行转化，使两个系统完成对接。适配器模式的结构<br>
+*<br>
+原有的系统的接口<br>
+*<br>
+适配器类实现原系统接口</p>
+<p>interface Graph {<br>
+drawLine();</p>
+<p>drawPie();<br>
+}</p>
+<p>class Canvas2D implements Graph {<br>
+drawLine() {<br>
+console.log(&quot;draw 2d line&quot;);<br>
+}</p>
+<p>drawPie() {<br>
+console.log(&quot;draw 2d pie&quot;);<br>
+}<br>
+}</p>
+<p>class Canvas3D {<br>
+draw3DLine() {<br>
+console.log(&quot;draw 3d line&quot;);<br>
+}</p>
+<p>draw3DPie() {<br>
+console.log(&quot;draw 3d pie&quot;);<br>
+}<br>
+}</p>
+<p>class Canvas3DAdapter implements Graph {<br>
+private canvas3D: Canvas3D = new Canvas3D();</p>
+<p>drawLine() {<br>
+this.canvas3D.draw3DLine();<br>
+}</p>
+<p>drawPie() {<br>
+this.canvas3D.draw3DPie();<br>
+}<br>
+}</p>
+<p>let canvas2D: Graph = new Canvas2D();<br>
+canvas2D.drawLine();<br>
+canvas2D.drawPie();</p>
+<p>let canvas3D: Graph = new Canvas3DAdapter();<br>
+canvas3D.drawLine();<br>
+canvas3D.drawPie();</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[设计模式之工厂模式]]></title>
         <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/</id>
