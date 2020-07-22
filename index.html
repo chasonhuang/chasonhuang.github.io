@@ -7,7 +7,7 @@
 <title>
     驯鹿者
 </title>
-<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415353459">
+<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415560675">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://chasonhuang.github.io">
-                <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595415353459" alt="">
+                <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595415560675" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,141 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">
+                        设计模式之工厂模式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-07-22</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            概念：（不需要new）　　工厂模式的定义：提供创建对象的接口，意思就是根据领导（调用者）的指示（参数），生产相应的产品（对象）。      创建一个对象常常需要复杂的过程，所以不适合在一个复杂的对象中。　　创建对象可能会导致大量的重复代码，也可能提供不了足够级别的抽象。      工厂就是把成员对象的创建工作转交给一个外部对象，好处在于消除对象之间的耦合(也就是相互影响) 分类： 　  简单工厂模式：使用一个类，通常为单体，来生成实例。　　复杂工厂模式定义是：将其成员对象的实列化推到子类中，子类可以重写父类接口方法以便创建的时候指定自己的对象类型。 　　父类只对创建过程中的一般性问题进行处理，这些处理会被子类继承，子类之间是相互独立的，具体的业务逻辑会放在子类中进行编写。简单工厂目的设计一个创建对象的方法，让派生类控制对象创建的过程。何时使用
+1. 不知道要创建的具体类
+2. 派生类指定具体的创建过程和细节
+3. 父类希望延迟创建到派生类
+举例很多系统都有用户和用户组的概念，比如linux系统，当系统想创建一个用户的时候，系统会把创建的工作交给各个具体的用户实现类。父类会处理所有的公共操作，派生类则会定一个工厂方法来处理特殊的操作。系统可能又AdminUser和StandardUser，但是他们都派生于UserObject。AdminUser在创建的时候可能会做一些额外的操作确保自己的权限比较大。
+GunType {AK,M4A1}interface Shootable {shoot: () =&amp;gt; void;}abstract class Gun implements Shootable {// 抽象产品 - 枪public abstract shoot(): void;}class AK47 extends Gun {//具体产品 - AK47shoot() {console.log(&amp;quot;ak47 shoot.&amp;quot;);}}class M4A1 extends Gun {//具体产品 - M4A1shoot() {console.log(&amp;quot;m4a1 shoot.&amp;quot;);}}class GunFactory {static createGun(type: GunType): Gun {switch (type) {case GunType.AK:return new AK47();case GunType.M4A1:return new M4A1();default:throw Error(&amp;quot;not support this gun yet&amp;quot;);}}}GunFactory.createGun(GunType.AK).shoot();GunFactory.createGun(GunType.M4A1).shoot();抽象工厂目的提供接口创建系列产品何时使用
+1. 创建的对象和使用它们的系统是分离的
+2. 需要创建的对象是家族式的
+3. 创建的众多对象是在一起使用的
+4. 具体创建对象的类和系统解耦
+举例在游戏中往往需要创建大量对象，下面的代码需要创建巫师和剑士，他们自己分别又包含很多对象。const factoryType = {swordsman: &amp;quot;swordsman&amp;quot;,wizard: &amp;quot;wizard&amp;quot;};class IHeroFactory {createAbilities() {}createEquipment() {}createSkills() {}}class SwordsmanFactory extends IHeroFactory {createAbilities() {return new SwordsmanAbility();}createEquipment() {return new SwordsmanEquipment();}createSkills() {return new SwordsmanSkill();}}class WizardFactory extends IHeroFactory {createAbilities() {return new WizardAbilitiy();}createEquipment() {return new WizardEquipment();}createSkills() {return new WizardSkill();}}class FactoryMaker {static getHeroFactory(type) {var factory = null;switch (type) {case factoryType.wizard:factory = new WizardFactory();break;case factoryType.swordsman:factory = new SwordsmanFactory();break;}return factory;}}class IAbstractSkill {getMainSkill() {}getSecondarySkill() {}}class SwordsmanSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &amp;quot;slash&amp;quot;;this._secondarySkillType = &amp;quot;berserk&amp;quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class WizardSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &amp;quot;fireball&amp;quot;;this._secondarySkillType = &amp;quot;tornado&amp;quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class IAbstractEquipment {getEquipment() {}}class SwordsmanEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &amp;quot;Robe of the Chaos&amp;quot;,armor: 20,resistance: 100};}getEquipment() {return this._equipment;}}class WizardEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &amp;quot;Wrath of the Lich King&amp;quot;,armor: 3,extraIntelligence: 5,extraMP: 100};}getEquipment() {return this._equipment;}}class IAbstractAbility {getAbilities() {}}class SwordsmanAbility extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,agility: 5,extraPower: true,extraPowerLevel: 1};}getAbilities() {return this._heroProperties;}}class WizardAbilitiy extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,intelligence: 30,agility: 5};}getAbilities() {return this._heroProperties;}}(function run() {let wizardFactory = FactoryMaker.getHeroFactory(factoryType.wizard),swordsmanFactory = FactoryMaker.getHeroFactory(factoryType.swordsman);let wiz = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: wizardFactory.createSkills()};let swrd = {abilities: swordsmanFactory.createAbilities(),equipment: swordsmanFactory.createEquipment(),skills: swordsmanFactory.createSkills()};let testHero = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: swordsmanFactory.createSkills()};console.log(wiz, swrd, testHero);})();
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/">
+                        设计模式之观察者模式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-07-22</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            简介
+观察者模式又叫发布订阅模式，他定义了一种一对多的关系，让多个观察者对象同时监听某一个主体对象，这个主体对象发生改变时就会通知所有观察者，使得他们能够自动更新自己
+提供一种抽象的策略，以便订阅者能供彼此独立的应对改变
+优点
+可以被广泛的应用到异步编程中，是一种代替传统回调函数的方案
+可以取代对象之间硬编码的通知机制，一个对象不再显示的调用另外一个对象的某个接口，发布订阅模式让两个对象松耦合的联系在一起，虽然不太清楚彼此的细节，但这不影响他们之间相互通信。有新的订阅者出现时，发布者的代码不需要任何的修改，同样发布者的需求改变时，也不会影响到之前的订阅者，只要约定的事件没有变化，就可以自由的改变他们
+实现步骤
+指定发布者
+给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者
+最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里边的回调函数
+// 发布类
+class Subject {
+// 缓存列表，用以存放回调函数，以便通知订阅者
+private observers: Observer[] = new Array();
+private state: number;
+// 新增订阅者
+public subscribe(observer: Observer): void {
+this.observers.push(observer);
+}
+// 改变状态，通知订阅者
+public setState(state: number): void {
+console.log(Warning: State changed: ${state});
+this.state = state;
+this.publish();
+}
+// 获取状态
+public getState(): number {
+return this.state;
+}
+// 发布事件
+public publish(): void {
+for (let observer of this.observers) {
+observer.update();
+}
+}
+// 取消订阅
+public unsubscribe(observer?: Observer): void {
+// 如果没传参数，则清空订阅者
+if (!observer) {
+this.observers = new Array();
+} else {
+this.observers.splice(this.observers.indexOf(observer), 1);
+}
+}
+}
+// 订阅者抽象类
+abstract class Observer {
+// 订阅的内容
+protected subject: Subject;
+// 订阅更新
+public abstract update(): void;
+}
+class AObserver extends Observer {
+// 构造方法里订阅
+public constructor(subject: Subject) {
+super();
+this.subject = subject;
+this.subject.subscribe(this);
+}
+public update() {
+console.log(AObserver: ${this.subject.getState()});
+}
+}
+class BObserver extends Observer {
+// 构造方法里订阅
+public constructor(subject: Subject) {
+super();
+this.subject = subject;
+this.subject.subscribe(this);
+}
+public update() {
+console.log(BObserver: ${this.subject.getState()});
+}
+}
+const subject = new Subject();
+const aObserver = new AObserver(subject);
+const bObserver = new BObserver(subject);
+subject.setState(1);
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">
@@ -174,39 +309,6 @@ console.log(singleton1, singleton2);
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://chasonhuang.github.io/post/hello-gridea/">
-                        Hello Gridea123
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-12-12</time>
-                    
-                        <a href="https://chasonhuang.github.io/tag/sTfJnLMb-/" class="post-tag i-tag
-                            i-tag-warning">
-            #Gridea
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://chasonhuang.github.io/post/hello-gridea/" class="post-feature-image" style="background-image:url(https://chasonhuang.github.io/post-images/hello-gridea.png) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/hello-gridea/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
                 </div>
@@ -218,7 +320,7 @@ console.log(singleton1, singleton2);
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415353459)">
+        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415560675)">
         </div>
         <h1 class="id_card-title">
             驯鹿者
