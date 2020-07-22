@@ -1,438 +1,369 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    驯鹿者
-</title>
-<link rel="shortcut icon" href="https://chasonhuang.github.io/favicon.ico?v=1595415631807">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>驯鹿者</title>	
+
 <link rel="stylesheet" href="https://chasonhuang.github.io/styles/main.css">
-<!-- js -->
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+            display = "https://chasonhuang.github.io/media/css/night.css";
+
+            display = "https://chasonhuang.github.io/media/css/night.css";   
+      
+            display = "https://chasonhuang.github.io/media/css/day.css";
+
+            display = "https://chasonhuang.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://chasonhuang.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://chasonhuang.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
 
 
 </head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://chasonhuang.github.io">
-                <img class="avatar" src="https://chasonhuang.github.io/images/avatar.png?v=1595415631807" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    驯鹿者
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
+<body class="home blog">
+    <div id="wrapper">
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">
-                        设计模式之适配器模式
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-07-22</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            适配器模式适配器模式: 一般是指不兼容的方法调用之间的一个代码薄层。
-分为类适配器和对象适配器，但是类适配器一般要多继承，所以不推荐使用。实际场景
-我们在旧的系统中实现一个需要传入三个参数的方法，并且已经有很多地方在使用这个方法。现在有一个新的系统也想使用这个方法，但是它只能提供将三个参数合并为一个数组的参数。
-这时我们需要一个代码薄层将数据进行转化，使两个系统完成对接。适配器模式的结构
-*
-原有的系统的接口
-*
-适配器类实现原系统接口
-interface Graph {
-drawLine();
-drawPie();
-}
-class Canvas2D implements Graph {
-drawLine() {
-console.log(&amp;quot;draw 2d line&amp;quot;);
-}
-drawPie() {
-console.log(&amp;quot;draw 2d pie&amp;quot;);
-}
-}
-class Canvas3D {
-draw3DLine() {
-console.log(&amp;quot;draw 3d line&amp;quot;);
-}
-draw3DPie() {
-console.log(&amp;quot;draw 3d pie&amp;quot;);
-}
-}
-class Canvas3DAdapter implements Graph {
-private canvas3D: Canvas3D = new Canvas3D();
-drawLine() {
-this.canvas3D.draw3DLine();
-}
-drawPie() {
-this.canvas3D.draw3DPie();
-}
-}
-let canvas2D: Graph = new Canvas2D();
-canvas2D.drawLine();
-canvas2D.drawPie();
-let canvas3D: Graph = new Canvas3DAdapter();
-canvas3D.drawLine();
-canvas3D.drawPie();
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">
-                        设计模式之工厂模式
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-07-22</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            概念：（不需要new）　　工厂模式的定义：提供创建对象的接口，意思就是根据领导（调用者）的指示（参数），生产相应的产品（对象）。      创建一个对象常常需要复杂的过程，所以不适合在一个复杂的对象中。　　创建对象可能会导致大量的重复代码，也可能提供不了足够级别的抽象。      工厂就是把成员对象的创建工作转交给一个外部对象，好处在于消除对象之间的耦合(也就是相互影响) 分类： 　  简单工厂模式：使用一个类，通常为单体，来生成实例。　　复杂工厂模式定义是：将其成员对象的实列化推到子类中，子类可以重写父类接口方法以便创建的时候指定自己的对象类型。 　　父类只对创建过程中的一般性问题进行处理，这些处理会被子类继承，子类之间是相互独立的，具体的业务逻辑会放在子类中进行编写。简单工厂目的设计一个创建对象的方法，让派生类控制对象创建的过程。何时使用
-1. 不知道要创建的具体类
-2. 派生类指定具体的创建过程和细节
-3. 父类希望延迟创建到派生类
-举例很多系统都有用户和用户组的概念，比如linux系统，当系统想创建一个用户的时候，系统会把创建的工作交给各个具体的用户实现类。父类会处理所有的公共操作，派生类则会定一个工厂方法来处理特殊的操作。系统可能又AdminUser和StandardUser，但是他们都派生于UserObject。AdminUser在创建的时候可能会做一些额外的操作确保自己的权限比较大。
-GunType {AK,M4A1}interface Shootable {shoot: () =&amp;gt; void;}abstract class Gun implements Shootable {// 抽象产品 - 枪public abstract shoot(): void;}class AK47 extends Gun {//具体产品 - AK47shoot() {console.log(&amp;quot;ak47 shoot.&amp;quot;);}}class M4A1 extends Gun {//具体产品 - M4A1shoot() {console.log(&amp;quot;m4a1 shoot.&amp;quot;);}}class GunFactory {static createGun(type: GunType): Gun {switch (type) {case GunType.AK:return new AK47();case GunType.M4A1:return new M4A1();default:throw Error(&amp;quot;not support this gun yet&amp;quot;);}}}GunFactory.createGun(GunType.AK).shoot();GunFactory.createGun(GunType.M4A1).shoot();抽象工厂目的提供接口创建系列产品何时使用
-1. 创建的对象和使用它们的系统是分离的
-2. 需要创建的对象是家族式的
-3. 创建的众多对象是在一起使用的
-4. 具体创建对象的类和系统解耦
-举例在游戏中往往需要创建大量对象，下面的代码需要创建巫师和剑士，他们自己分别又包含很多对象。const factoryType = {swordsman: &amp;quot;swordsman&amp;quot;,wizard: &amp;quot;wizard&amp;quot;};class IHeroFactory {createAbilities() {}createEquipment() {}createSkills() {}}class SwordsmanFactory extends IHeroFactory {createAbilities() {return new SwordsmanAbility();}createEquipment() {return new SwordsmanEquipment();}createSkills() {return new SwordsmanSkill();}}class WizardFactory extends IHeroFactory {createAbilities() {return new WizardAbilitiy();}createEquipment() {return new WizardEquipment();}createSkills() {return new WizardSkill();}}class FactoryMaker {static getHeroFactory(type) {var factory = null;switch (type) {case factoryType.wizard:factory = new WizardFactory();break;case factoryType.swordsman:factory = new SwordsmanFactory();break;}return factory;}}class IAbstractSkill {getMainSkill() {}getSecondarySkill() {}}class SwordsmanSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &amp;quot;slash&amp;quot;;this._secondarySkillType = &amp;quot;berserk&amp;quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class WizardSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &amp;quot;fireball&amp;quot;;this._secondarySkillType = &amp;quot;tornado&amp;quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class IAbstractEquipment {getEquipment() {}}class SwordsmanEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &amp;quot;Robe of the Chaos&amp;quot;,armor: 20,resistance: 100};}getEquipment() {return this._equipment;}}class WizardEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &amp;quot;Wrath of the Lich King&amp;quot;,armor: 3,extraIntelligence: 5,extraMP: 100};}getEquipment() {return this._equipment;}}class IAbstractAbility {getAbilities() {}}class SwordsmanAbility extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,agility: 5,extraPower: true,extraPowerLevel: 1};}getAbilities() {return this._heroProperties;}}class WizardAbilitiy extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,intelligence: 30,agility: 5};}getAbilities() {return this._heroProperties;}}(function run() {let wizardFactory = FactoryMaker.getHeroFactory(factoryType.wizard),swordsmanFactory = FactoryMaker.getHeroFactory(factoryType.swordsman);let wiz = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: wizardFactory.createSkills()};let swrd = {abilities: swordsmanFactory.createAbilities(),equipment: swordsmanFactory.createEquipment(),skills: swordsmanFactory.createSkills()};let testHero = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: swordsmanFactory.createSkills()};console.log(wiz, swrd, testHero);})();
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/">
-                        设计模式之观察者模式
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-07-22</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            简介
-观察者模式又叫发布订阅模式，他定义了一种一对多的关系，让多个观察者对象同时监听某一个主体对象，这个主体对象发生改变时就会通知所有观察者，使得他们能够自动更新自己
-提供一种抽象的策略，以便订阅者能供彼此独立的应对改变
-优点
-可以被广泛的应用到异步编程中，是一种代替传统回调函数的方案
-可以取代对象之间硬编码的通知机制，一个对象不再显示的调用另外一个对象的某个接口，发布订阅模式让两个对象松耦合的联系在一起，虽然不太清楚彼此的细节，但这不影响他们之间相互通信。有新的订阅者出现时，发布者的代码不需要任何的修改，同样发布者的需求改变时，也不会影响到之前的订阅者，只要约定的事件没有变化，就可以自由的改变他们
-实现步骤
-指定发布者
-给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者
-最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里边的回调函数
-// 发布类
-class Subject {
-// 缓存列表，用以存放回调函数，以便通知订阅者
-private observers: Observer[] = new Array();
-private state: number;
-// 新增订阅者
-public subscribe(observer: Observer): void {
-this.observers.push(observer);
-}
-// 改变状态，通知订阅者
-public setState(state: number): void {
-console.log(Warning: State changed: ${state});
-this.state = state;
-this.publish();
-}
-// 获取状态
-public getState(): number {
-return this.state;
-}
-// 发布事件
-public publish(): void {
-for (let observer of this.observers) {
-observer.update();
-}
-}
-// 取消订阅
-public unsubscribe(observer?: Observer): void {
-// 如果没传参数，则清空订阅者
-if (!observer) {
-this.observers = new Array();
-} else {
-this.observers.splice(this.observers.indexOf(observer), 1);
-}
-}
-}
-// 订阅者抽象类
-abstract class Observer {
-// 订阅的内容
-protected subject: Subject;
-// 订阅更新
-public abstract update(): void;
-}
-class AObserver extends Observer {
-// 构造方法里订阅
-public constructor(subject: Subject) {
-super();
-this.subject = subject;
-this.subject.subscribe(this);
-}
-public update() {
-console.log(AObserver: ${this.subject.getState()});
-}
-}
-class BObserver extends Observer {
-// 构造方法里订阅
-public constructor(subject: Subject) {
-super();
-this.subject = subject;
-this.subject.subscribe(this);
-}
-public update() {
-console.log(BObserver: ${this.subject.getState()});
-}
-}
-const subject = new Subject();
-const aObserver = new AObserver(subject);
-const bObserver = new BObserver(subject);
-subject.setState(1);
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">
-                        设计模式之单例模式
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-07-21</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            1、单例模式 Singleton
-简介
-单例就是保证一个类只有一个实例，实现的方法一般是先判断实例是否存在，如果存在直接返回，如果不存在就创建了再返回，确保了一个类只有一个实例对象，在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象
-作用和注意事项
-作用
-模块间通信
-在系统中某个类的对象只能存在一个
-保护自己的属性和方法，创建一个命名空间，防止不同的人命名变量的冲突
-注意事项
-注意 this 的使用
-闭包容易造成内存泄漏，不需要的要清理
-注意 new 的成本
-当超过一个县线程想要获取相同资源的时候，竞争就会出现，单例模式很容易受到竞争的影响，因此如果实例一开始没有被初始化，两个现象可能就会创建两个对象而不是返回实例，因此在开发者在多线程中实现单例时，必须要保证同步
-类比： 如果有十个人在办公室，并且他们都需要用一台打印机，十台电脑共享了打印机（实例）通过共享了一个打印机，他们分享了相同的资源
-个人理解
-开创一个命名空间，对象实例创建在命名空间中，用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下次获取该实例的时候，直接返回之前创建的对象
-使用场景：
-单例模式是一种常用的模式，有一些对象我们往往只需要一个，比如全局缓存、浏览器的window对象。在js开发中，单例模式的用途同样非常广泛。试想一下，当我们
-单击登录按钮的时候，页面中会出现一个登录框，而这个浮窗是唯一的，无论单击多少次登录按钮，这个浮窗只会被创建一次。因此这个登录浮窗就适合用单例模式。
-总结一下它的使用场景：
-　　1、可以用它来划分命名空间
-2、借助单例模式，可以把代码组织的更为一致，方便阅读与维护
-// class Singleton {
-// private static instance: Singleton
-// private constructor () {}
-// static getInstance (): Singleton {
-// if (!Singleton.instance) {
-// Singleton.instance = new Singleton()
-// }
-// return this.instance
-// }
-// }
-// const singleton1 = Singleton.getInstance()
-// const singleton2 = Singleton.getInstance()
-// console.log(singleton1 === singleton2) // true
-class Singleton {
-private constructor(name: string, age: number) {
-this.name = name;
-this.age = age;
-}
-private static instance: Singleton;
-public name: string;
-public age: number;
-static getInstance(name: string, age: number): Singleton {
-if (!this.instance) {
-this.instance = new Singleton(name, age);
-}
-return this.instance;
-}
-}
-const singleton1 = Singleton.getInstance(&amp;quot;Mary&amp;quot;, 20);
-const singleton2 = Singleton.getInstance(&amp;quot;Jack&amp;quot;, 20);
-console.log(singleton1, singleton2);
-// Singleton { name: &#39;Mary&#39;, age: 20 } Singleton { name: &#39;Mary&#39;, age: 20 }
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://chasonhuang.github.io/images/avatar.png?v=1595415631807)">
-        </div>
-        <h1 class="id_card-title">
-            驯鹿者
-        </h1>
-        <h2 class="id_card-description">
-            微笑不失礼
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
+		<header id="header" class="site-header" >
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://chasonhuang.github.io" rel="home">驯鹿者</a></h1>
+										
+					<h2 class="site-description">微笑不失礼</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
     
 
-                        <!-- 公告栏 -->
-                        
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
 
-                </div>
-            </div>
+<div class="jingge">
 
 
+    
 
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://chasonhuang.github.io/atom.xml" target="_blank">RSS</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+		
+ 						
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+	
+	 
+	   
+	<div class="entry-content">
+		<h1 class="entry-title"><a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/" rel="bookmark">设计模式之适配器模式</a></h1>
+		<div class="entry-meta">
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-07-22 19:00:14" itemprop="datePublished" pubdate="">2020-07-22</time></i>
+	 
+			
+		</div>
+
+		<div class="entry-summary jia">
+			
+			<p class="readmore">
+				<a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/" class="link-more">Read more</a>
+			</p>
+		</div>
+		
+	</div>
+	
+</article>
+		
+ 						
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+	
+	 
+	   
+	<div class="entry-content">
+		<h1 class="entry-title"><a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/" rel="bookmark">设计模式之工厂模式</a></h1>
+		<div class="entry-meta">
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-07-22 18:58:35" itemprop="datePublished" pubdate="">2020-07-22</time></i>
+	 
+			
+		</div>
+
+		<div class="entry-summary jia">
+			
+			<p class="readmore">
+				<a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/" class="link-more">Read more</a>
+			</p>
+		</div>
+		
+	</div>
+	
+</article>
+		
+ 						
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+	
+	 
+	   
+	<div class="entry-content">
+		<h1 class="entry-title"><a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/" rel="bookmark">设计模式之观察者模式</a></h1>
+		<div class="entry-meta">
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-07-22 18:58:02" itemprop="datePublished" pubdate="">2020-07-22</time></i>
+	 
+			
+		</div>
+
+		<div class="entry-summary jia">
+			
+			<p class="readmore">
+				<a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/" class="link-more">Read more</a>
+			</p>
+		</div>
+		
+	</div>
+	
+</article>
+		
+ 						
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+	
+	 
+	   
+	<div class="entry-content">
+		<h1 class="entry-title"><a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/" rel="bookmark">设计模式之单例模式</a></h1>
+		<div class="entry-meta">
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-07-21 17:12:12" itemprop="datePublished" pubdate="">2020-07-21</time></i>
+	 
+			
+		</div>
+
+		<div class="entry-summary jia">
+			
+			<p class="readmore">
+				<a href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-dan-li-mo-shi/" class="link-more">Read more</a>
+			</p>
+		</div>
+		
+	</div>
+	
+</article>
+		
+ 
+
+											   
+	</div>
+            
+		
+
+			</div>
+														   
+			<nav class="navigation pagination" role="navigation">
+	
+			
+	</nav>	
+    	<script type="text/javascript">
+//点击加载更多
+jQuery(document).ready(function($) {
+    //点击下一页的链接(即那个a标签)
+    $(' .next').click(function() {
+        $this = $(this);
+        $this.addClass('loading').text('正在努力加载'); //给a标签加载一个loading的class属性，用来添加加载效果
+        var href = $this.attr('href'); //获取下一页的链接地址
+        if (href != undefined) { //如果地址存在
+            $.ajax({ //发起ajax请求
+                url: href,
+                //请求的地址就是下一页的链接
+                type: 'get',
+                //请求类型是get
+                error: function(request) {
+                    //如果发生错误怎么处理
+                },
+                success: function(data) { //请求成功
+                    $this.removeClass('loading').text('点击查看更多'); //移除loading属性
+                    var $res = $(data).find('.post-318 '); //从数据中挑出文章数据，请根据实际情况更改
+                    $('.col-md-8').append($res.fadeIn(500)); //将数据加载加进posts-loop的标签中。
+                    var newhref = $(data).find(' .next').attr('href'); //找出新的下一页链接
+                    if (newhref != undefined) {
+                        $('.next').attr('href', newhref);
+                    } else {
+                        $('.next').remove(); //如果没有下一页了，隐藏
+                    }
+                }
+            });
+        }
+        return false;
+    });
+});
+</script>
+									 
+		</div>
+
+		
+	 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://chasonhuang.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
+	
+	
+														   
 </body>
-
 </html>
