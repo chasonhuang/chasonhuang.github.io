@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
     <title>驯鹿者</title>
-    <updated>2020-07-23T02:58:48.244Z</updated>
+    <updated>2020-07-23T03:01:53.358Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
@@ -16,84 +16,103 @@
         <link href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/">
         </link>
         <updated>2020-07-22T10:58:02.000Z</updated>
-        <content type="html"><![CDATA[<p>简介<br>
-观察者模式又叫发布订阅模式，他定义了一种一对多的关系，让多个观察者对象同时监听某一个主体对象，这个主体对象发生改变时就会通知所有观察者，使得他们能够自动更新自己</p>
-<p>提供一种抽象的策略，以便订阅者能供彼此独立的应对改变</p>
-<p>优点<br>
-可以被广泛的应用到异步编程中，是一种代替传统回调函数的方案</p>
-<p>可以取代对象之间硬编码的通知机制，一个对象不再显示的调用另外一个对象的某个接口，发布订阅模式让两个对象松耦合的联系在一起，虽然不太清楚彼此的细节，但这不影响他们之间相互通信。有新的订阅者出现时，发布者的代码不需要任何的修改，同样发布者的需求改变时，也不会影响到之前的订阅者，只要约定的事件没有变化，就可以自由的改变他们</p>
-<p>实现步骤<br>
-指定发布者<br>
-给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者<br>
-最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里边的回调函数</p>
-<p>// 发布类<br>
-class Subject {<br>
-// 缓存列表，用以存放回调函数，以便通知订阅者<br>
-private observers: Observer[] = new Array<Observer>();<br>
-private state: number;</p>
-<p>// 新增订阅者<br>
-public subscribe(observer: Observer): void {<br>
-this.observers.push(observer);<br>
-}</p>
-<p>// 改变状态，通知订阅者<br>
-public setState(state: number): void {<br>
-console.log(<code>Warning: State changed: ${state}</code>);<br>
-this.state = state;<br>
-this.publish();<br>
-}</p>
-<p>// 获取状态<br>
-public getState(): number {<br>
-return this.state;<br>
-}</p>
-<p>// 发布事件<br>
-public publish(): void {<br>
-for (let observer of this.observers) {<br>
-observer.update();<br>
-}<br>
-}</p>
-<p>// 取消订阅<br>
-public unsubscribe(observer?: Observer): void {<br>
-// 如果没传参数，则清空订阅者<br>
-if (!observer) {<br>
-this.observers = new Array<Observer>();<br>
-} else {<br>
-this.observers.splice(this.observers.indexOf(observer), 1);<br>
-}<br>
-}<br>
-}</p>
-<p>// 订阅者抽象类<br>
-abstract class Observer {<br>
-// 订阅的内容<br>
-protected subject: Subject;</p>
-<p>// 订阅更新<br>
-public abstract update(): void;<br>
-}</p>
-<p>class AObserver extends Observer {<br>
-// 构造方法里订阅<br>
-public constructor(subject: Subject) {<br>
-super();<br>
-this.subject = subject;<br>
-this.subject.subscribe(this);<br>
-}</p>
-<p>public update() {<br>
-console.log(<code>AObserver: ${this.subject.getState()}</code>);<br>
-}<br>
-}</p>
-<p>class BObserver extends Observer {<br>
-// 构造方法里订阅<br>
-public constructor(subject: Subject) {<br>
-super();<br>
-this.subject = subject;<br>
-this.subject.subscribe(this);<br>
-}</p>
-<p>public update() {<br>
-console.log(<code>BObserver: ${this.subject.getState()}</code>);<br>
-}<br>
-}</p>
-<p>const subject = new Subject();</p>
-<p>const aObserver = new AObserver(subject);<br>
-const bObserver = new BObserver(subject);<br>
-subject.setState(1);</p>
+        <content type="html"><![CDATA[<h3 id="简介"><strong>简介</strong></h3>
+<pre><code>观察者模式又叫发布订阅模式，他定义了一种一对多的关系，让多个观察者对象同时监听某一个主体对象，这个主体对象发生改变时就会通知所有观察者，使得他们能够自动更新自己。
+提供一种抽象的策略，以便订阅者能供彼此独立的应对改变。
+</code></pre>
+<h3 id="优点"><strong>优点</strong></h3>
+<ul>
+<li>可以被广泛的应用到异步编程中，是一种代替传统回调函数的方案</li>
+<li>可以取代对象之间硬编码的通知机制，一个对象不再显示的调用另外一个对象的某个接口，发布订阅模式让两个对象松耦合的联系在一起，虽然不太清楚彼此的细节，但这不影响他们之间相互通信。有新的订阅者出现时，发布者的代码不需要任何的修改，同样发布者的需求改变时，也不会影响到之前的订阅者，只要约定的事件没有变化，就可以自由的改变他们</li>
+</ul>
+<h3 id="实现步骤"><strong>实现步骤</strong></h3>
+<ul>
+<li>指定发布者</li>
+<li>给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者</li>
+<li>最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里边的回调函数</li>
+</ul>
+<pre><code>// 发布类
+class Subject {
+// 缓存列表，用以存放回调函数，以便通知订阅者
+private observers: Observer[] = new Array&lt;Observer&gt;();
+private state: number;
+
+// 新增订阅者
+public subscribe(observer: Observer): void {
+this.observers.push(observer);
+}
+
+// 改变状态，通知订阅者
+public setState(state: number): void {
+console.log(`Warning: State changed: ${state}`);
+this.state = state;
+this.publish();
+}
+
+// 获取状态
+public getState(): number {
+return this.state;
+}
+
+// 发布事件
+public publish(): void {
+for (let observer of this.observers) {
+observer.update();
+}
+}
+
+// 取消订阅
+public unsubscribe(observer?: Observer): void {
+// 如果没传参数，则清空订阅者
+if (!observer) {
+this.observers = new Array&lt;Observer&gt;();
+} else {
+this.observers.splice(this.observers.indexOf(observer), 1);
+}
+}
+}
+
+// 订阅者抽象类
+abstract class Observer {
+// 订阅的内容
+protected subject: Subject;
+
+// 订阅更新
+public abstract update(): void;
+}
+
+class AObserver extends Observer {
+// 构造方法里订阅
+public constructor(subject: Subject) {
+super();
+this.subject = subject;
+this.subject.subscribe(this);
+}
+
+public update() {
+console.log(`AObserver: ${this.subject.getState()}`);
+}
+}
+
+class BObserver extends Observer {
+// 构造方法里订阅
+public constructor(subject: Subject) {
+super();
+this.subject = subject;
+this.subject.subscribe(this);
+}
+
+public update() {
+console.log(`BObserver: ${this.subject.getState()}`);
+}
+}
+
+const subject = new Subject();
+
+const aObserver = new AObserver(subject);
+const bObserver = new BObserver(subject);
+subject.setState(1);
+</code></pre>
 ]]></content>
     </entry>
     <entry>
