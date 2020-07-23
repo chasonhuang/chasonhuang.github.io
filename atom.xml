@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
     <title>驯鹿者</title>
-    <updated>2020-07-23T02:46:10.749Z</updated>
+    <updated>2020-07-23T02:47:54.075Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
@@ -10,76 +10,6 @@
     <logo>https://chasonhuang.github.io/images/avatar.png</logo>
     <icon>https://chasonhuang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 驯鹿者</rights>
-    <entry>
-        <title type="html"><![CDATA[设计模式之适配器模式]]></title>
-        <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/</id>
-        <link href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gua-pei-qi-mo-shi/">
-        </link>
-        <updated>2020-07-22T11:00:14.000Z</updated>
-        <content type="html"><![CDATA[<p>适配器模式适配器模式: 一般是指不兼容的方法调用之间的一个代码薄层。<br>
-分为类适配器和对象适配器，但是类适配器一般要多继承，所以不推荐使用。实际场景<br>
-我们在旧的系统中实现一个需要传入三个参数的方法，并且已经有很多地方在使用这个方法。现在有一个新的系统也想使用这个方法，但是它只能提供将三个参数合并为一个数组的参数。<br>
-这时我们需要一个代码薄层将数据进行转化，使两个系统完成对接。适配器模式的结构<br>
-*<br>
-原有的系统的接口<br>
-*<br>
-适配器类实现原系统接口</p>
-<p>interface Graph {<br>
-drawLine();</p>
-<p>drawPie();<br>
-}</p>
-<p>class Canvas2D implements Graph {<br>
-drawLine() {<br>
-console.log(&quot;draw 2d line&quot;);<br>
-}</p>
-<p>drawPie() {<br>
-console.log(&quot;draw 2d pie&quot;);<br>
-}<br>
-}</p>
-<p>class Canvas3D {<br>
-draw3DLine() {<br>
-console.log(&quot;draw 3d line&quot;);<br>
-}</p>
-<p>draw3DPie() {<br>
-console.log(&quot;draw 3d pie&quot;);<br>
-}<br>
-}</p>
-<p>class Canvas3DAdapter implements Graph {<br>
-private canvas3D: Canvas3D = new Canvas3D();</p>
-<p>drawLine() {<br>
-this.canvas3D.draw3DLine();<br>
-}</p>
-<p>drawPie() {<br>
-this.canvas3D.draw3DPie();<br>
-}<br>
-}</p>
-<p>let canvas2D: Graph = new Canvas2D();<br>
-canvas2D.drawLine();<br>
-canvas2D.drawPie();</p>
-<p>let canvas3D: Graph = new Canvas3DAdapter();<br>
-canvas3D.drawLine();<br>
-canvas3D.drawPie();</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[设计模式之工厂模式]]></title>
-        <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/</id>
-        <link href="https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-gong-han-mo-shi/">
-        </link>
-        <updated>2020-07-22T10:58:35.000Z</updated>
-        <content type="html"><![CDATA[<p>概念：（不需要new）　　工厂模式的定义：提供创建对象的接口，意思就是根据领导（调用者）的指示（参数），生产相应的产品（对象）。      创建一个对象常常需要复杂的过程，所以不适合在一个复杂的对象中。　　创建对象可能会导致大量的重复代码，也可能提供不了足够级别的抽象。      工厂就是把成员对象的创建工作转交给一个外部对象，好处在于消除对象之间的耦合(也就是相互影响) 分类： 　  简单工厂模式：使用一个类，通常为单体，来生成实例。　　复杂工厂模式定义是：将其成员对象的实列化推到子类中，子类可以重写父类接口方法以便创建的时候指定自己的对象类型。 　　父类只对创建过程中的一般性问题进行处理，这些处理会被子类继承，子类之间是相互独立的，具体的业务逻辑会放在子类中进行编写。简单工厂目的设计一个创建对象的方法，让派生类控制对象创建的过程。何时使用<br>
-1. 不知道要创建的具体类<br>
-2. 派生类指定具体的创建过程和细节<br>
-3. 父类希望延迟创建到派生类</p>
-<p>举例很多系统都有用户和用户组的概念，比如linux系统，当系统想创建一个用户的时候，系统会把创建的工作交给各个具体的用户实现类。父类会处理所有的公共操作，派生类则会定一个工厂方法来处理特殊的操作。系统可能又AdminUser和StandardUser，但是他们都派生于UserObject。AdminUser在创建的时候可能会做一些额外的操作确保自己的权限比较大。<br>
-GunType {AK,M4A1}interface Shootable {shoot: () =&gt; void;}abstract class Gun implements Shootable {// 抽象产品 - 枪public abstract shoot(): void;}class AK47 extends Gun {//具体产品 - AK47shoot() {console.log(&quot;ak47 shoot.&quot;);}}class M4A1 extends Gun {//具体产品 - M4A1shoot() {console.log(&quot;m4a1 shoot.&quot;);}}class GunFactory {static createGun(type: GunType): Gun {switch (type) {case GunType.AK:return new AK47();case GunType.M4A1:return new M4A1();default:throw Error(&quot;not support this gun yet&quot;);}}}GunFactory.createGun(GunType.AK).shoot();GunFactory.createGun(GunType.M4A1).shoot();抽象工厂目的提供接口创建系列产品何时使用<br>
-1. 创建的对象和使用它们的系统是分离的<br>
-2. 需要创建的对象是家族式的<br>
-3. 创建的众多对象是在一起使用的<br>
-4. 具体创建对象的类和系统解耦</p>
-<p>举例在游戏中往往需要创建大量对象，下面的代码需要创建巫师和剑士，他们自己分别又包含很多对象。const factoryType = {swordsman: &quot;swordsman&quot;,wizard: &quot;wizard&quot;};class IHeroFactory {createAbilities() {}createEquipment() {}createSkills() {}}class SwordsmanFactory extends IHeroFactory {createAbilities() {return new SwordsmanAbility();}createEquipment() {return new SwordsmanEquipment();}createSkills() {return new SwordsmanSkill();}}class WizardFactory extends IHeroFactory {createAbilities() {return new WizardAbilitiy();}createEquipment() {return new WizardEquipment();}createSkills() {return new WizardSkill();}}class FactoryMaker {static getHeroFactory(type) {var factory = null;switch (type) {case factoryType.wizard:factory = new WizardFactory();break;case factoryType.swordsman:factory = new SwordsmanFactory();break;}return factory;}}class IAbstractSkill {getMainSkill() {}getSecondarySkill() {}}class SwordsmanSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &quot;slash&quot;;this._secondarySkillType = &quot;berserk&quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class WizardSkill extends IAbstractSkill {public _mainSkillName: string;public _secondarySkillType: string;constructor() {super();this._mainSkillName = &quot;fireball&quot;;this._secondarySkillType = &quot;tornado&quot;;}getMainSkill() {return this._mainSkillName;}getSecondarySkill() {return this._secondarySkillType;}}class IAbstractEquipment {getEquipment() {}}class SwordsmanEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &quot;Robe of the Chaos&quot;,armor: 20,resistance: 100};}getEquipment() {return this._equipment;}}class WizardEquipment extends IAbstractEquipment {public _equipment: {};constructor() {super();this._equipment = {type: &quot;Wrath of the Lich King&quot;,armor: 3,extraIntelligence: 5,extraMP: 100};}getEquipment() {return this._equipment;}}class IAbstractAbility {getAbilities() {}}class SwordsmanAbility extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,agility: 5,extraPower: true,extraPowerLevel: 1};}getAbilities() {return this._heroProperties;}}class WizardAbilitiy extends IAbstractAbility {public _heroProperties: {};constructor() {super();this._heroProperties = {strength: 10,intelligence: 30,agility: 5};}getAbilities() {return this._heroProperties;}}(function run() {let wizardFactory = FactoryMaker.getHeroFactory(factoryType.wizard),swordsmanFactory = FactoryMaker.getHeroFactory(factoryType.swordsman);let wiz = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: wizardFactory.createSkills()};let swrd = {abilities: swordsmanFactory.createAbilities(),equipment: swordsmanFactory.createEquipment(),skills: swordsmanFactory.createSkills()};let testHero = {abilities: wizardFactory.createAbilities(),equipment: wizardFactory.createEquipment(),skills: swordsmanFactory.createSkills()};console.log(wiz, swrd, testHero);})();</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[设计模式之观察者模式]]></title>
         <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/</id>
