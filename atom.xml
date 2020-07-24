@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chasonhuang.github.io</id>
     <title>驯鹿者</title>
-    <updated>2020-07-24T10:06:28.927Z</updated>
+    <updated>2020-07-24T10:22:13.995Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chasonhuang.github.io"/>
     <link rel="self" href="https://chasonhuang.github.io/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>https://chasonhuang.github.io/images/avatar.png</logo>
     <icon>https://chasonhuang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 驯鹿者</rights>
+    <entry>
+        <title type="html"><![CDATA[前端搭建自己的脚手架]]></title>
+        <id>https://chasonhuang.github.io/post/qian-duan-da-jian-zi-ji-de-jiao-shou-jia/</id>
+        <link href="https://chasonhuang.github.io/post/qian-duan-da-jian-zi-ji-de-jiao-shou-jia/">
+        </link>
+        <updated>2020-07-24T10:06:30.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1-首先说下为什么要做自己的脚手架"><strong>1、首先说下为什么要做自己的脚手架：</strong></h3>
+<pre><code>a) 公司项目大部分公共可以复用
+b) 每次搭建项目花时间太多，时间都花在webpack配置上面啦
+</code></pre>
+<h3 id="2-我们需要的脚手架的功能-只需要下载项目结构代码就好"><strong>2、我们需要的脚手架的功能---&gt;只需要下载项目结构代码就好</strong></h3>
+<h3 id="3-思路"><strong>3、思路：</strong></h3>
+<pre><code>a) 准备好脚手架模板
+b) 把脚手架模板放到GitHub或者其他git服务器
+c) 最后执行一句(xx-cli init 'project name') 可以下载模板
+</code></pre>
+<h3 id="4-开始撸代码在网上找了很多脚手架帖子发现都太复杂啦-不是我想要的-我只是需要简单的下载项目的模板就好"><strong>4、开始撸代码（在网上找了很多脚手架帖子，发现都太复杂啦， 不是我想要的。 我只是需要简单的下载项目的模板就好）</strong></h3>
+<pre><code>一、准备一个npm账号（没有自己去npm官网去注册）
+二、将准备好的模板代码放到git服务器（您可以放到GitHub，自己的git服务器）
+三、创建一个空文件夹在里面执行npm init(初始化项目)，生产一个package.json文件
+四、在package.json文件加上
+
+&quot;bin&quot;: {
+        &quot;xxx-cli&quot;: &quot;index.js&quot;
+},
+
+五、使用第三方库：
+
+child_process -执行shll命令
+commander --注册命令-很强大的一个库
+
+//执行下面代码
+npm install commander child_process --save
+</code></pre>
+<pre><code>六、新建一个index.js放入以下代码：
+const program = require('commander');
+var process1 = require('child_process');
+//version 版本号
+//name 新项目名称
+program.version('1.0.0', '-v, --version')
+    .command('init &lt;name&gt;')
+    .action((name) =&gt; {
+        console.log('clone template ...');
+        process1.exec('git clone (git 下载地址) ' + name, function(error, stdout, stderr) {
+            if (error !== null) {
+                console.log('exec error: ' + error);
+                return;
+            }
+            console.log(stdout);
+            console.log('clone success');
+        });
+    });
+program.parse(process.argv);
+</code></pre>
+<pre><code>七、发布npm
+
+//执行
+npm login
+login
+//登录成功后执行
+npm publish
+八、发布完成后您就可以执行以下代码测试啦：
+
+//先全局安装您的xx-cli
+npm install xx-cli -g
+//安装完成后执行下面代码看下版本
+xx-cli -v
+//最后执行-看下面结果截图
+xx-cli init &lt;Project Name&gt;
+测试版本截图
+
+
+version
+
+效果图：
+</code></pre>
+<p>result<br>
+如果需要复杂的脚手架可以扩展！！！！！不喜勿喷</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[设计模式之观察者模式]]></title>
         <id>https://chasonhuang.github.io/post/she-ji-mo-shi-zhi-guan-cha-zhe-mo-shi/</id>
