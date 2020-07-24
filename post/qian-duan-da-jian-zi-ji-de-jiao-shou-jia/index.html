@@ -166,31 +166,29 @@ b) 把脚手架模板放到GitHub或者其他git服务器
 c) 最后执行一句(xx-cli init 'project name') 可以下载模板
 </code></pre>
 <h3 id="4-开始撸代码在网上找了很多脚手架帖子发现都太复杂啦-不是我想要的-我只是需要简单的下载项目的模板就好"><strong>4、开始撸代码（在网上找了很多脚手架帖子，发现都太复杂啦， 不是我想要的。 我只是需要简单的下载项目的模板就好）</strong></h3>
-<pre><code>一、准备一个npm账号（没有自己去npm官网去注册）
-二、将准备好的模板代码放到git服务器（您可以放到GitHub，自己的git服务器）
-三、创建一个空文件夹在里面执行npm init(初始化项目)，生产一个package.json文件
-四、在package.json文件加上
-
-&quot;bin&quot;: {
+<p>一、准备一个npm账号（没有自己去npm官网去注册）<br>
+二、将准备好的模板代码放到git服务器（您可以放到GitHub，自己的git服务器）<br>
+三、创建一个空文件夹在里面执行npm init(初始化项目)，生产一个package.json文件<br>
+四、在package.json文件加上</p>
+<pre><code class="language-js">&quot;bin&quot;: {
         &quot;xxx-cli&quot;: &quot;index.js&quot;
 },
-
-五、使用第三方库：
-
-child_process -执行shll命令
+</code></pre>
+<p>五、使用第三方库：</p>
+<pre><code class="language-js">child_process -执行shll命令
 commander --注册命令-很强大的一个库
 
 //执行下面代码
 npm install commander child_process --save
 </code></pre>
-<pre><code>六、新建一个index.js放入以下代码：
-const program = require('commander');
+<p>六、新建一个index.js放入以下代码：</p>
+<pre><code class="language-js">const program = require('commander');
 var process1 = require('child_process');
 //version 版本号
 //name 新项目名称
 program.version('1.0.0', '-v, --version')
     .command('init &lt;name&gt;')
-    .action((name) =&gt; {
+        .action((name) =&gt; {
         console.log('clone template ...');
         process1.exec('git clone (git 下载地址) ' + name, function(error, stdout, stderr) {
             if (error !== null) {
@@ -203,9 +201,8 @@ program.version('1.0.0', '-v, --version')
     });
 program.parse(process.argv);
 </code></pre>
-<pre><code>七、发布npm
-
-//执行
+<p>七、发布npm</p>
+<pre><code class="language-js">//执行
 npm login
 login
 //登录成功后执行
@@ -216,17 +213,10 @@ npm publish
 npm install xx-cli -g
 //安装完成后执行下面代码看下版本
 xx-cli -v
-//最后执行-看下面结果截图
+//最后执行-创建项目
 xx-cli init &lt;Project Name&gt;
-测试版本截图
-
-
-version
-
-效果图：
 </code></pre>
-<p>result<br>
-如果需要复杂的脚手架可以扩展！！！！！不喜勿喷</p>
+<p>如果需要复杂的脚手架可以扩展！！！！！不喜勿喷</p>
 
 							</div>
 	<div class="wow bounceInDown vt-post-tags">
