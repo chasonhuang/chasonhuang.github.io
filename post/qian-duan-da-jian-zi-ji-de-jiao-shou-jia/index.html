@@ -182,24 +182,34 @@ commander --注册命令-很强大的一个库
 npm install commander child_process --save
 </code></pre>
 <p>六、新建一个index.js放入以下代码：</p>
-<pre><code class="language-js">const program = require('commander');
-var process1 = require('child_process');
+<pre><code class="language-js">#!/usr/bin/env node
+process.env.NODE_PATH = __dirname + &quot;/../node_modules/&quot;;
+const program = require(&quot;commander&quot;);
+var process1 = require(&quot;child_process&quot;);
 //version 版本号
 //name 新项目名称
-program.version('1.0.0', '-v, --version')
-    .command('init &lt;name&gt;')
-        .action((name) =&gt; {
-        console.log('clone template ...');
-        process1.exec('git clone (git 下载地址) ' + name, function(error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-                return;
-            }
-            console.log(stdout);
-            console.log('clone success');
-        });
-    });
+program
+  .version(&quot;1.0.11&quot;, &quot;-v, --version&quot;)
+  .command(&quot;init &lt;name&gt;&quot;)
+  .action((name) =&gt; {
+    console.log(&quot;clone template ...&quot;);
+    process1.exec(
+      &quot;git clone https://github.com/chasonhuang/react-ts-frame.git &quot; + name,
+      function (error, stdout, stderr) {
+        if (error !== null) {
+          console.log(&quot;exec error: &quot; + error);
+          return;
+        }
+        console.log(stdout);
+        console.log(&quot;clone success&quot;);
+      }
+    );
+  });
 program.parse(process.argv);
+
+if (!program.args.length) {
+  program.help();
+}
 </code></pre>
 <p>七、发布npm</p>
 <pre><code class="language-js">//执行
@@ -210,11 +220,11 @@ npm publish
 八、发布完成后您就可以执行以下代码测试啦：
 
 //先全局安装您的xx-cli
-npm install xx-cli -g
+npm install react-ts-frame -g
 //安装完成后执行下面代码看下版本
-xx-cli -v
+react-ts-frame -v
 //最后执行-创建项目
-xx-cli init &lt;Project Name&gt;
+react-ts-frame init &lt;Project Name&gt;
 </code></pre>
 <p>如果需要复杂的脚手架可以扩展！！！！！不喜勿喷</p>
 
